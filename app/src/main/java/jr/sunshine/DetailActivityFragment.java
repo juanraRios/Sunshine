@@ -15,9 +15,6 @@ import android.widget.TextView;
 
 import static android.support.v4.view.MenuItemCompat.getActionProvider;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class DetailActivityFragment extends Fragment {
 
     private static final String LOG_TAG = DetailActivityFragment.class.getSimpleName();
@@ -26,7 +23,7 @@ public class DetailActivityFragment extends Fragment {
 
 
     public DetailActivityFragment() {
-        setHasOptionsMenu(false);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -49,7 +46,7 @@ public class DetailActivityFragment extends Fragment {
         Intent result;
 
         result=new Intent(Intent.ACTION_SEND);
-        result.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        result.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         result.setType("text/plain");
         result.putExtra(Intent.EXTRA_TEXT,mForecastStr + FORECAST_SHARE_HASHTAG);
 
@@ -58,8 +55,6 @@ public class DetailActivityFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_detail,menu);
-
         MenuItem menuItem = menu.findItem(R.id.action_share);
 
         ShareActionProvider shareActionProvider = (ShareActionProvider) getActionProvider(menuItem);
